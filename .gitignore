@@ -8,4 +8,4 @@ helix-importer-ui
 *.bak
 .idea
 
-visual-tests/node_modules/*
+/tools/visual-tests/node_modules/* 

@@ -7,7 +7,16 @@
     "lint:js": "eslint .",
     "lint:css": "stylelint \"blocks/**/*.css\" \"styles/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix"
+    "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix",
+    "test:visual": "playwright test",
+    "test:visual:ui": "playwright test --ui",
+    "test:visual:update": "playwright test --update-snapshots",
+    "test:visual:report": "playwright show-report",
+    "test:visual:generate": "node tools/visual-tests/generate-visual-tests.js",
+    "test:visual:component": "playwright test -g",
+    "test:visual:component:update": "playwright test -g --update-snapshots",
+    "test:visual:server": "node tools/visual-tests/start-visual-test-server.js",
+    "start": "concurrently -k \"npm run test:visual:server\" \"aem up\" --kill-others-on-fail"
   },
   "repository": {
     "type": "git",
@@ -20,11 +29,19 @@
   },
   "homepage": "https://github.com/adobe/aem-boilerplate#readme",
   "devDependencies": {
-    "@babel/eslint-parser": "7.28.0",
+    "@babel/eslint-parser": "7.27.5",
+    "concurrently": "^9.1.2",
     "eslint": "8.57.1",
     "eslint-config-airbnb-base": "15.0.0",
-    "eslint-plugin-import": "2.32.0",
-    "stylelint": "16.23.1",
-    "stylelint-config-standard": "39.0.0"
+    "eslint-plugin-import": "2.31.0",
+    "stylelint": "16.20.0",
+    "stylelint-config-standard": "38.0.0"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.53.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "node-fetch": "^2.7.0",
+    "playwright": "^1.53.1"
   }
 }
